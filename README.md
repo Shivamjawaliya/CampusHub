@@ -1,6 +1,6 @@
 # CampusHub - Campus Management System
 
-## 📚 Project Overview
+## 📚 Introduction
 
 **CampusHub** is a comprehensive Django-based web application designed to manage campus operations, student-staff interactions, course management, assignments, and grading systems. This project serves as a complete database-driven solution for educational institutions to streamline their academic processes.
 
@@ -14,31 +14,81 @@
 - **Course Enrollment**: Students can request courses and enroll in new courses
 - **Student Profiles**: Comprehensive student dashboard with profile information
 
+The project uses Django ORM with SQLite database and includes 11 database models covering departments, courses, assignments, student/staff authentication, grades, and course enrollment.
+
 ---
 
-## 🗄️ Database Schema
+## 🚀 How to Run on Another System
 
-This project uses Django ORM with SQLite database. Below is a detailed breakdown of all database models:
+### Prerequisites
 
-### 1. **Department Model** (`department/models.py`)
-- `department_id` (CharField): Unique department identifier
-- `department_name` (CharField): Name of the department
+- Python 3.7 or higher
+- pip (Python package manager)
 
-### 2. **Login Model** (`login/models.py`)
-- `username` (CharField): Student username for login
-- `password` (CharField): Student password
-- `student_name` (CharField): Full name of the student
+### Step 1: Clone or Download the Project
 
-### 3. **Staff Login Model** (`stafflogin/models.py`)
-- `staff_email` (CharField): Staff email address
-- `staff_password` (CharField): Staff password
-- `staff_name` (CharField): Full name of the staff member
-- `id` (AutoField): Primary key
+```bash
+# If using Git
+git clone <repository-url>
+cd CampusHub-main
 
-### 4. **Student Details Model** (`studentdetails/models.py`)
-- `student_email` (CharField): Student email address
-- `student_name` (CharField): Full name of the student
-- `department` (CharField): Department affiliation
+# Or extract the project folder if downloaded as ZIP
+```
+
+### Step 2: Create Virtual Environment (Recommended)
+
+```bash
+# Create virtual environment
+python3 -m venv venv
+
+# Activate virtual environment
+# On macOS/Linux:
+source venv/bin/activate
+
+# On Windows:
+venv\Scripts\activate
+```
+
+### Step 3: Install Django
+
+```bash
+pip install django
+```
+
+### Step 4: Database Setup
+
+```bash
+# Create database migrations
+python manage.py makemigrations
+
+# Apply migrations to create database tables
+python manage.py migrate
+
+# Create superuser (optional, for admin access)
+python manage.py createsuperuser
+```
+
+### Step 5: Run the Development Server
+
+```bash
+python manage.py runserver
+```
+
+### Step 6: Access the Application
+
+- Open your browser and navigate to: `http://127.0.0.1:8000/`
+- For admin panel: `http://127.0.0.1:8000/admin/` (use superuser credentials)
+
+### Troubleshooting
+
+- **If migrations fail**: Ensure all Django apps are properly installed and check `projectone/settings.py` for `INSTALLED_APPS`
+- **If port 8000 is busy**: Use `python manage.py runserver 8080` to run on a different port
+- **If static files don't load**: Run `python manage.py collectstatic` (if configured)
+
+---
+
+**Note**: The `projectone/` directory containing Django settings is excluded from git. You may need to create or configure the settings file if it's missing.
+
 - `new_course` (CharField): New course enrollment status
 
 ### 5. **Courses Model** (`coourses/models.py`)
